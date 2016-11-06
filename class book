@@ -1,0 +1,29 @@
+class Book extends Product{
+    private String author;
+    private String publisher;
+    private int price;
+    public void setInfor(String author,String publisher ,int price){
+	
+	    this.author = author;
+            this.publisher = publisher;
+            this.price  = price;
+	
+	}
+    
+    
+    
+    public String getAuthor(){
+	return this.author;
+    }
+    public int getPrice(){
+	return this.price;
+    }
+    public String getPublisher(){
+        return this.publisher;
+    }
+    public void addBook(){
+        
+    }
+
+    
+}
