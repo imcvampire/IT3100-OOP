@@ -14,7 +14,7 @@ public abstract class Product implements IProduct {
     protected String name;
     protected int quantity;
     protected int price;
-    protected int sold = 0;
+    protected int sold;
 
     public Product(String name, int quantity, int price) {
         this.name = name;
@@ -54,4 +54,11 @@ public abstract class Product implements IProduct {
         this.price = price;
     }
 
+    public int getSold() {
+        return sold;
+    }
+    
+    public void setSold(int sold) {
+        this.sold = sold;
+    }
 }
