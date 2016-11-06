@@ -1,0 +1,31 @@
+class Bill{
+    private Date time;
+    int products[] = new int[0];
+    public void Bill(){
+        
+        
+    }
+    public void addProducts(){
+        
+    }
+    public int[] getProducts(){
+        return this.products;
+        
+    }
+    
+    public Date getTime(){
+        return this.time;
+        
+    }
+    public void setTime(){
+        this.time=time;
+    }
+   
+
+    
+    
+    
+    
+    
+    
+}
