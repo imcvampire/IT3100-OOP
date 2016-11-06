@@ -1,0 +1,102 @@
+class Product{
+    private String name;
+    private int quantity;
+    private int price;
+    public void setProduct(String name, int quantity , int price){
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        
+        
+    }
+    public String getName(){
+        return this.name;
+    }
+    public int getQuantity(){
+        return this.quantity;
+    }
+    public int getPrice(){
+        return this.price;
+    }
+    public void decreaseQuantity(int number){
+        
+    }
+    public void increaseQuantity(int number){
+        
+    }
+    
+    
+}
+class Employee{
+    private String name;
+    private int salary;
+    public void setEmployee(String name,int salary){
+        this.name = name;
+        this.salary = salary;
+    }
+    public String getName(){
+        return this.name;
+    }
+    
+    
+    
+    
+    
+}
+class Book extends Product{
+    private String author;
+    private int numberOfPage;
+    private String publisher;
+    private int price;
+    public void setInfor(String author,String publisher ,int price){
+	
+	    this.author = author;
+	    this.numberOfPage = numberOfPage;
+            this.publisher = publisher;
+            this.price  = price;
+	
+	}
+    
+    
+    
+    public String getAuthor(){
+	return this.author;
+    }
+    public int getNumberOfPage(){
+	return this.numberOfPage;
+    }
+    
+
+
+    
+}
+class Bill{
+    private Date time;
+    int products[] = new int[0];
+    public void Bill(){
+        
+    }
+    public void addProducts(){
+        
+    }
+    public int[] getProducts(){
+        return this.products;
+        
+    }
+    
+    public Date getTime(){
+        return this.time;
+        
+    }
+    public void setTime(){
+        this.time=time;
+    }
+   
+
+    
+    
+    
+    
+    
+    
+}
