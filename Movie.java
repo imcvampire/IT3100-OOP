@@ -21,11 +21,10 @@ public class Movie extends Product{
         this.director = director;
     }
     
-    public Music(String singer, String type, int year, String name, int quantity, int price, int sold) {
+    public Movie(ArrayList<String> actors, String director, String name, int quantity, int price, int sold) {
         super(name, quantity, price, sold);
-        this.singer = singer;
-        this.type = type;
-        this.year = year;
+        this.actors = actors;
+        this.director = director;
     }
 
     public ArrayList<String> getActors() {
