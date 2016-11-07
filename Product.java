@@ -20,6 +20,12 @@ public abstract class Product implements IProduct {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
+        this.sold = 0;
+    }
+    
+    public Product(String name, int quantity, int price, int sold) {
+        this(name, quantity, price);
+        this.sold = sold;
     }
     
     public void decreaseQuantity(int number) {
