@@ -21,6 +21,13 @@ public class Music extends Product{
         this.type = type;
     }
     
+    public Music(String singer, String type, int year, String name, int quantity, int price, int sold) {
+        super(name, quantity, price, sold);
+        this.singer = singer;
+        this.type = type;
+        this.year = year;
+    }
+    
     public String getSinger() {
         return singer;
     }
