@@ -20,6 +20,13 @@ public class Movie extends Product{
         this.actors = actors;
         this.director = director;
     }
+    
+    public Music(String singer, String type, int year, String name, int quantity, int price, int sold) {
+        super(name, quantity, price, sold);
+        this.singer = singer;
+        this.type = type;
+        this.year = year;
+    }
 
     public ArrayList<String> getActors() {
         return actors;
