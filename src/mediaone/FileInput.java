@@ -6,15 +6,15 @@ import java.util.*;
 import com.opencsv.*;
 
 public class FileInput {
-    public static ArrayList<Product> getProductList() throws IOException {
-        CSVReader reader = new CSVReader(new FileReader("product.csv"));
-        ArrayList<Product> productsList = new ArrayList<Product>();
+    public static ArrayList<Product> getProductsList() throws IOException {
+        CSVReader reader = new CSVReader(new FileReader("products.csv"));
+        ArrayList<Product> productsList = new ArrayList<>();
         String[] nextLine;
 
         while ((nextLine = reader.readNext()) != null) {
             switch(nextLine[0]) {
                 case "movie": {
-                    ArrayList<String> actors = new ArrayList<String>(Arrays.asList(nextLine[1].split("|")));
+                    ArrayList<String> actors = new ArrayList<>(Arrays.asList(nextLine[1].split("|")));
 
                     productsList.add(
                         new Movie(
@@ -54,7 +54,7 @@ public class FileInput {
 
     public static ArrayList<Employee> getEmployeeList() throws IOException {
         CSVReader reader = new CSVReader(new FileReader("employees.csv"));
-        ArrayList<Employee> employeesList = new ArrayList<Employee>();
+        ArrayList<Employee> employeesList = new ArrayList<>();
         String[] nextLine;
 
         while ((nextLine = reader.readNext()) != null) {
@@ -62,9 +62,7 @@ public class FileInput {
                 new Employee()
             );
         }
-    }
 
-    public static void main() {
-        System.out.println("cho");
+        return employeesList;
     }
 }
