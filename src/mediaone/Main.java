@@ -30,7 +30,7 @@ public class Main {
         System.out.println("--------------");
 
         int index = 1;
-        for (String s : Options) {
+        for (String s : Options.options) {
             System.out.println((index++) + ". " + s);
         }
     }
