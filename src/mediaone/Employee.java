@@ -7,45 +7,36 @@ package mediaone;
 
 /**
  *
- * @author Admin
+ * @author Administrator
  */
 public class Employee {
-    private int maNV;
-    private String tenNV;
-    private int luong;
 
-    public Employee(int maNV,String tenNV,int luong){
-        this.maNV = maNV;
-        this.tenNV = tenNV;
-        this.luong = luong;
+    private String name;
+    private int salary;
+
+    public Employee() {
+
     }
 
-    Employee() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    public void setMaNV(int maNV) {
-        this.maNV = maNV;
+    public Employee(String name, int salary) {
+        this.name = name;
+        this.salary = salary;
     }
 
-    public void setTenNV(String tenNV) {
-        this.tenNV = tenNV;
+    public String getName() {
+        return name;
     }
 
-    public void setLuong(int luong) {
-        this.luong = luong;
-    }
-    
-    
-    public int getMaNV() {
-        return maNV;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTenNV() {
-        return tenNV;
+    public int getSalary() {
+        return salary;
     }
 
-    public int getLuong() {
-        return luong;
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
-    
+
 }
