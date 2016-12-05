@@ -357,7 +357,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tblAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAllMouseClicked
-        tblAll.
+
     }//GEN-LAST:event_tblAllMouseClicked
 
     private boolean validateForm() {
