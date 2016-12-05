@@ -511,22 +511,24 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        
+        int id = this.productController.getLastId();
         if (rdBook.isSelected()) {
             if (!this.validateBook()) {
                 return;
             }
             
-            this.productController.addBook(makeBookRecord());
+            this.productController.addBook(makeBookRecord(), id);
         } else if (rdMovie.isSelected()) {
             if (!this.validateMovie())
                 return;
             
-            this.productController.addMovie(makeMovieRecord());
+            this.productController.addMovie(makeMovieRecord(), id);
         } else {
             if (!this.validateMusic())
                 return;
             
-            this.productController.addMusic(makeMusicRecord());
+            this.productController.addMusic(makeMusicRecord(), id);
         }
         setVisible(false);
         dispose();

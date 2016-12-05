@@ -40,8 +40,9 @@ public class ProductController {
         new CreateNewProductFrame(parent, true, this).setVisible(true);
     }
 
-    public void addBook(ArrayList<String> book) {
+    public void addBook(ArrayList<String> book, int id) {
         Book newRecord = new Book();
+        newRecord.setId(id);
         newRecord.setName(book.get(0));
         newRecord.setAuthor(book.get(1));
         newRecord.setPublisher(book.get(2));
@@ -52,8 +53,9 @@ public class ProductController {
         dsSP.add(newRecord);
     }
 
-    public void addMovie(ArrayList<String> movie) {
+    public void addMovie(ArrayList<String> movie, int id) {
         Movie newRecord = new Movie();
+        newRecord.setId(id);
         newRecord.setName(movie.get(0));
         newRecord.setDirector(movie.get(1));
         ArrayList<String> actors = new ArrayList<>();
@@ -67,8 +69,9 @@ public class ProductController {
         dsSP.add(newRecord);
     }
 
-    public void addMusic(ArrayList<String> music) {
+    public void addMusic(ArrayList<String> music, int id) {
         Music newRecord = new Music();
+        newRecord.setId(id);
         newRecord.setName(music.get(0));
         newRecord.setSinger(music.get(1));
         newRecord.setType(music.get(2));
@@ -77,6 +80,16 @@ public class ProductController {
         newRecord.setSold(Integer.parseInt(music.get(5)));
 
         dsSP.add(newRecord);
+    }
+
+    public int getLastId() {
+        int maxId = 0;
+        for (int i = 0; i < dsSP.size(); i++) {
+            if (dsSP.get(i).getId() > maxId) {
+                maxId = dsSP.get(i).getId();
+            }
+        }
+        return maxId;
     }
 
     public void edit(JFrame parent, String type) {
