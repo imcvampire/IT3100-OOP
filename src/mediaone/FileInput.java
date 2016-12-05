@@ -17,29 +17,29 @@ public class FileInput {
                 case "movie": {
                     ArrayList<String> actors = new ArrayList<>(Arrays.asList(nextLine[1].split("|")));
 
-                    productsList.add(
-                            new Movie(
-                                    actors,
-                                    nextLine[2],
-                                    nextLine[3],
-                                    Integer.parseInt(nextLine[4]),
-                                    Integer.parseInt(nextLine[5])
-                            )
-                    );
+//                    productsList.add(
+//                            new Movie(
+//                                    actors,
+//                                    nextLine[2],
+//                                    nextLine[3],
+//                                    Integer.parseInt(nextLine[4]),
+//                                    Integer.parseInt(nextLine[5])
+//                            )
+//                    );
 
                     break;
                 }
 
                 case "music": {
-                    productsList.add(
-                            new Music(
-                                    nextLine[1],
-                                    Integer.parseInt(nextLine[2]),
-                                    Integer.parseInt(nextLine[3]),
-                                    nextLine[4],
-                                    nextLine[5]
-                            )
-                    );
+//                    productsList.add(
+//                            new Music(
+//                                    nextLine[1],
+//                                    Integer.parseInt(nextLine[2]),
+//                                    Integer.parseInt(nextLine[3]),
+//                                    nextLine[4],
+//                                    nextLine[5]
+//                            )
+//                    );
 
                     break;
                 }

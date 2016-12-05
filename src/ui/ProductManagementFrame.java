@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mediaone.*;
 import controller.*;
+import ui.presenter.ProductTableModel;
 
 /**
  *
@@ -34,11 +35,8 @@ public class ProductManagementFrame extends javax.swing.JFrame {
     }
 
     private void loadData(ArrayList<Product> dsSP) {
-        this.tblAllProductModel = new DefaultTableModel();
-        this.tblBookModel = new DefaultTableModel();
-        this.tblMovieModel = new DefaultTableModel();
-        this.tblMusicModel = new DefaultTableModel();
 
+        this.initTableModel();
         this.loadColumnName();
 
         for (int i = 0; i < this.dsSP.size(); i++) {
@@ -52,65 +50,109 @@ public class ProductManagementFrame extends javax.swing.JFrame {
             this.loadProduct(this.dsSP.get(i));
         }
 
+        setModel();
+        setReorder();
+    }
+
+    private void setModel() {
         tblBook.setModel(tblBookModel);
         tblMovie.setModel(tblMovieModel);
         tblMusic.setModel(tblMusicModel);
         tblAll.setModel(tblAllProductModel);
     }
 
+    private void setReorder() {
+        tblAll.getTableHeader().setReorderingAllowed(false);
+        tblBook.getTableHeader().setReorderingAllowed(false);
+        tblMovie.getTableHeader().setReorderingAllowed(false);
+        tblMusic.getTableHeader().setReorderingAllowed(false);
+    }
+
+    private void initTableModel() {
+        this.tblAllProductModel = new ProductTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column != 0 && column != 2;
+            }
+        };
+        this.tblBookModel = new ProductTableModel();
+        this.tblMovieModel = new ProductTableModel();
+        this.tblMusicModel = new ProductTableModel();
+    }
+
     private void loadColumnName() {
-        String[] columnAll = {"Name", "Quantity", "Price", "Sold"};
+        String[] columnAll = {"id", "Name", "Type", "Quantity", "Price", "Sold"};
         this.tblAllProductModel.setColumnIdentifiers(columnAll);
 
-        String[] columnBook = {"Name", "Author", "Publisher", "Quantity", "Price", "Sold"};
+        String[] columnBook = {"id", "Name", "Author", "Publisher", "Quantity", "Price", "Sold"};
         this.tblBookModel.setColumnIdentifiers(columnBook);
 
-        String[] columnMovie = {"Name", "Director", "Actors", "Quantity", "Price", "Sold"};
+        String[] columnMovie = {"id", "Name", "Director", "Actors", "Quantity", "Price", "Sold"};
         this.tblMovieModel.setColumnIdentifiers(columnMovie);
 
-        String[] columnMusic = {"Name", "Singer", "Type", "Quantity", "Price", "Sold"};
+        String[] columnMusic = {"id", "Name", "Singer", "Type", "Year", "Quantity", "Price", "Sold"};
         this.tblMusicModel.setColumnIdentifiers(columnMusic);
     }
 
     private void loadProduct(Product product) {
         ArrayList<String> row = new ArrayList<>();
+
+        row.add(Integer.toString(product.getId()));
         row.add(product.getName());
+        if (product instanceof Book) {
+            row.add("Book");
+        } else if (product instanceof Movie) {
+            row.add("Movie");
+        } else {
+            row.add("Music");
+        }
         row.add(Integer.toString(product.getQuantity()));
         row.add(Integer.toString(product.getPrice()));
         row.add(Integer.toString(product.getSold()));
+
         tblAllProductModel.addRow(row.toArray());
     }
 
     private void loadBook(Book book) {
         ArrayList<String> row = new ArrayList<>();
+
+        row.add(Integer.toString(book.getId()));
         row.add(book.getName());
         row.add(book.getAuthor());
         row.add(book.getPublisher());
         row.add(Integer.toString(book.getQuantity()));
         row.add(Integer.toString(book.getPrice()));
         row.add(Integer.toString(book.getSold()));
+
         tblBookModel.addRow(row.toArray());
     }
 
     private void loadMovie(Movie movie) {
         ArrayList<String> row = new ArrayList<>();
+
+        row.add(Integer.toString(movie.getId()));
         row.add(movie.getName());
         row.add(movie.getDirector());
         row.add(movie.getActors().toString());
         row.add(Integer.toString(movie.getQuantity()));
         row.add(Integer.toString(movie.getPrice()));
         row.add(Integer.toString(movie.getSold()));
+
         tblMovieModel.addRow(row.toArray());
     }
 
     private void loadMusic(Music music) {
         ArrayList<String> row = new ArrayList<>();
+
+        row.add(Integer.toString(music.getId()));
         row.add(music.getName());
         row.add(music.getSinger());
         row.add(music.getType());
+        row.add(Integer.toString(music.getYear()));
         row.add(Integer.toString(music.getQuantity()));
         row.add(Integer.toString(music.getPrice()));
         row.add(Integer.toString(music.getSold()));
+
         tblMusicModel.addRow(row.toArray());
     }
 
@@ -142,8 +184,8 @@ public class ProductManagementFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JToggleButton();
+        btnEdit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Product Management");
@@ -244,17 +286,17 @@ public class ProductManagementFrame extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jToggleButton1.setText("Refresh");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                btnRefreshActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Edit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
 
@@ -285,11 +327,11 @@ public class ProductManagementFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButton1))
+                        .addComponent(btnRefresh))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCreate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnClose)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -316,12 +358,12 @@ public class ProductManagementFrame extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jToggleButton1))
+                            .addComponent(btnRefresh))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnClose)
                             .addComponent(btnCreate)
-                            .addComponent(jButton1))
+                            .addComponent(btnEdit))
                         .addGap(26, 26, 26))))
         );
 
@@ -348,13 +390,78 @@ public class ProductManagementFrame extends javax.swing.JFrame {
         loadData(this.productController.search(tfSearch.getText()));
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         loadData(dsSP);
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        int[] rowsTable = getRowsTable();
+
+        int id = 0;
+        int rowSelect = 0;
+        String tableType = "";
+
+        if (rowsTable[0] != -1) {
+            id = Integer.parseInt(tblAll.getValueAt(rowsTable[0], 0).toString());
+            tableType = "All";
+            rowSelect = rowsTable[0];
+        } else if (rowsTable[1] != -1) {
+            id = Integer.parseInt(tblBook.getValueAt(rowsTable[1], 0).toString());
+            tableType = "Book";
+            rowSelect = rowsTable[1];
+        } else if (rowsTable[2] != -1) {
+            id = Integer.parseInt(tblMovie.getValueAt(rowsTable[2], 0).toString());
+            tableType = "Movie";
+            rowSelect = rowsTable[2];
+        } else if (rowsTable[3] != -1) {
+            id = Integer.parseInt(tblMusic.getValueAt(rowsTable[3], 0).toString());
+            tableType = "Music";
+            rowSelect = rowsTable[3];
+        }
+
+        this.productController.update(this.getData(tableType, rowSelect), id, tableType);
+
+        loadData(dsSP);
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private int[] getRowsTable() {
+        return new int[]{tblAll.getSelectedRow(), tblBook.getSelectedRow(), tblMovie.getSelectedRow(), tblMusic.getSelectedRow()};
+    }
+
+    private ArrayList<String> getData(String type, int row) {
+        ArrayList<String> data = new ArrayList<>();
+
+        if (type.equals("All")) {
+            data.add(tblAll.getValueAt(row, 1).toString());
+            data.add(tblAll.getValueAt(row, 3).toString());
+            data.add(tblAll.getValueAt(row, 4).toString());
+            data.add(tblAll.getValueAt(row, 5).toString());
+        } else if (type.equals("Book")) {
+            data.add(tblBook.getValueAt(row, 1).toString());
+            data.add(tblBook.getValueAt(row, 2).toString());
+            data.add(tblBook.getValueAt(row, 3).toString());
+            data.add(tblBook.getValueAt(row, 4).toString());
+            data.add(tblBook.getValueAt(row, 5).toString());
+            data.add(tblBook.getValueAt(row, 6).toString());
+        } else if (type.equals("Movie")) {
+            data.add(tblMovie.getValueAt(row, 1).toString());
+            data.add(tblMovie.getValueAt(row, 2).toString());
+            data.add(tblMovie.getValueAt(row, 3).toString());
+            data.add(tblMovie.getValueAt(row, 4).toString());
+            data.add(tblMovie.getValueAt(row, 5).toString());
+            data.add(tblMovie.getValueAt(row, 6).toString());
+        } else if (type.equals("Music")) {
+            data.add(tblMusic.getValueAt(row, 1).toString());
+            data.add(tblMusic.getValueAt(row, 2).toString());
+            data.add(tblMusic.getValueAt(row, 3).toString());
+            data.add(tblMusic.getValueAt(row, 4).toString());
+            data.add(tblMusic.getValueAt(row, 5).toString());
+            data.add(tblMusic.getValueAt(row, 6).toString());
+            data.add(tblMusic.getValueAt(row, 7).toString());
+        }
+
+        return data;
+    }
 
     private void tblAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAllMouseClicked
 
@@ -368,15 +475,15 @@ public class ProductManagementFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane allTable;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JToggleButton btnRefresh;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cbSearchAttr;
     private javax.swing.JComboBox<String> cbSearchType;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JScrollPane tabAll;
     private javax.swing.JScrollPane tabBook;
     private javax.swing.JScrollPane tabMovie;
