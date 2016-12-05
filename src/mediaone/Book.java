@@ -18,14 +18,14 @@ public class Book extends Product {
         
     }
 
-    public Book(String author, String publisher, String name, int quantity, int price) {
-        super(name, quantity, price);
+    public Book(int id, String name, int quantity, int price, String author, String publisher) {
+        super(id, name, quantity, price);
         this.author = author;
         this.publisher = publisher;
     }
 
-    public Book(String author, String publisher, String name, int quantity, int price, int sold) {
-        super(name, quantity, price, sold);
+    public Book(int id, String name, int quantity, int price, int sold, String author, String publisher) {
+        super(id, name, quantity, price, sold);
         this.author = author;
         this.publisher = publisher;
     }

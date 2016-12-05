@@ -11,6 +11,7 @@ package mediaone;
  */
 public abstract class Product {
 
+    protected int id;
     protected String name;
     protected int quantity;
     protected int price;
@@ -20,15 +21,16 @@ public abstract class Product {
         
     }
     
-    public Product(String name, int quantity, int price) {
+    public Product(int id, String name, int quantity, int price) {
+        this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
         this.sold = 0;
     }
 
-    public Product(String name, int quantity, int price, int sold) {
-        this(name, quantity, price);
+    public Product(int id, String name, int quantity, int price, int sold) {
+        this(id, name, quantity, price);
         this.sold = sold;
     }
 

@@ -22,32 +22,32 @@ public class Main {
 //
 //            return;
 //        }
-        
+
         System.out.println("Getting store ...");
 
         System.out.println("Getting employees list ...");
 
         System.out.println("Finish!");
-        
-        Music product1 = new Music("Quoc Ca", 10, 100, "Nam Cao", "Quoc Te");
-        
+
+        Music music1 = new Music(1, "Quoc Ca", 10, 100, "Nam Cao", "Quoc Te", 1945);
+
         ArrayList<String> actors = new ArrayList<>();
         actors.add("Johnny Deep");
-        Movie movie1 = new Movie(actors, "David Scoth", "Caribe", 10, 100, 0);
-        
-        Book book1 = new Book("J.K.Rowling", "Ly Lan", "Harry Potter", 20, 40, 1);
-        
+        Movie movie1 = new Movie(2, "Caribe", 10, 100, 0, actors, "David Scoth");
+
+        Book book1 = new Book(3, "Harry Potter", 20, 40, 1, "J.K.Rowling", "Ly Lan");
+
         Employee tester = new Employee("Pia", 100);
         Bill bill = new Bill();
-        
+
         Store store = new Store(100);
-        
-        store.addProduct(product1);
+
+        store.addProduct(music1);
         store.addProduct(movie1);
         store.addProduct(book1);
         store.addEmployee(tester);
         store.addBill(bill);
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
