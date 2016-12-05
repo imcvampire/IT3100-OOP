@@ -58,6 +58,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnEdit" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnClose" min="-2" max="-2" attributes="0"/>
@@ -99,6 +101,7 @@
                           <Component id="btnClose" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnCreate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
@@ -368,6 +371,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDelete">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

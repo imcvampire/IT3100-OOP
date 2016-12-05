@@ -186,6 +186,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         btnRefresh = new javax.swing.JToggleButton();
         btnEdit = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Product Management");
@@ -300,6 +301,13 @@ public class ProductManagementFrame extends javax.swing.JFrame {
             }
         });
 
+        btnDelete.setText("Xóa");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -330,6 +338,8 @@ public class ProductManagementFrame extends javax.swing.JFrame {
                         .addComponent(btnRefresh))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCreate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -363,7 +373,8 @@ public class ProductManagementFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnClose)
                             .addComponent(btnCreate)
-                            .addComponent(btnEdit))
+                            .addComponent(btnEdit)
+                            .addComponent(btnDelete))
                         .addGap(26, 26, 26))))
         );
 
@@ -467,6 +478,42 @@ public class ProductManagementFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblAllMouseClicked
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int[] rowsTable = getRowsTable();
+        int id = getIdDelete(rowsTable);
+        
+        this.productController.deleteProduct(id);
+        loadData(dsSP);
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private int getIdDelete(int[] rowsTable) {
+        int deleteIndex = 0;
+        int deleteId = 0;
+
+        for (int i = 0; i < rowsTable.length; i++) {
+            if (rowsTable[i] != -1) {
+                deleteIndex = i;
+                break;
+            }
+        }
+
+        switch (deleteIndex) {
+            case 0:
+                deleteId = Integer.parseInt(tblAll.getValueAt(rowsTable[0], 0).toString());
+                break;
+            case 1:
+                deleteId = Integer.parseInt(tblBook.getValueAt(rowsTable[0], 0).toString());
+                break;
+            case 2:
+                deleteId = Integer.parseInt(tblMovie.getValueAt(rowsTable[0], 0).toString());
+                break;
+            default:
+                deleteId = Integer.parseInt(tblMusic.getValueAt(rowsTable[0], 0).toString());
+                break;
+        }
+        return deleteId;
+    }
+
     private boolean validateForm() {
         String stSearch = tfSearch.getText();
         return !stSearch.isEmpty();
@@ -475,6 +522,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane allTable;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JToggleButton btnRefresh;
     private javax.swing.JButton btnSearch;

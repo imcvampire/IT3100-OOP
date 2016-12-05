@@ -141,4 +141,21 @@ public class ProductController {
 
         return null;
     }
+
+    public void deleteProduct(int id) {
+        dsSP.remove(findPositionById(id));
+    }
+
+    private int findPositionById(int id) {
+        int position = 0;
+
+        for (int i = 0; i < dsSP.size(); i++) {
+            if (dsSP.get(i).getId() == id) {
+                position = i;
+                break;
+            }
+        }
+
+        return position;
+    }
 }
