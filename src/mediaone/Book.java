@@ -13,23 +13,23 @@ public class Book extends Product {
 
     private String author;
     private String publisher;
-    
+
     public Book() {
-        
+
     }
 
-    public Book(int id, String name, int quantity, int price, String author, String publisher) {
-        super(id, name, quantity, price);
+    public Book(int id, String name, int quantity, int purchasePrice, int price, String author, String publisher) {
+        super(id, name, quantity, purchasePrice, price);
         this.author = author;
         this.publisher = publisher;
     }
 
-    public Book(int id, String name, int quantity, int price, int sold, String author, String publisher) {
-        super(id, name, quantity, price, sold);
+    public Book(int id, String name, int quantity, int purchasePrice, int price, int sold, String author, String publisher) {
+        super(id, name, quantity, purchasePrice, price, sold);
         this.author = author;
         this.publisher = publisher;
     }
-    
+
     public void setInfor(String author, String publisher, int price) {
 
         this.author = author;

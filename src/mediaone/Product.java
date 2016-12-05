@@ -14,24 +14,37 @@ public abstract class Product {
     protected int id;
     protected String name;
     protected int quantity;
+    protected int purchasePrice;
     protected int price;
     protected int sold;
 
     public Product() {
         
     }
-    
-    public Product(int id, String name, int quantity, int price) {
+
+    public Product(int id, String name, int quantity, int purchasePrice, int price) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
+        this.purchasePrice = purchasePrice;
         this.price = price;
-        this.sold = 0;
     }
 
-    public Product(int id, String name, int quantity, int price, int sold) {
-        this(id, name, quantity, price);
+    public Product(int id, String name, int quantity, int purchasePrice, int price, int sold) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.purchasePrice = purchasePrice;
+        this.price = price;
         this.sold = sold;
+    }
+
+    public int getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(int purchasePrice) {
+        this.purchasePrice = purchasePrice;
     }
 
     public void decreaseQuantity(int number) {

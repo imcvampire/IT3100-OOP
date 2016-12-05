@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 public class CreateNewProductFrame extends javax.swing.JDialog {
 
     private ProductController productController;
+
     /**
      * Creates new form CreateNewProductFrame
      */
@@ -57,6 +58,8 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
         tfBookQuantity = new javax.swing.JTextField();
         tfBookPrice = new javax.swing.JTextField();
         tfBookSold = new javax.swing.JTextField();
+        tfBookPurchasePrice = new javax.swing.JTextField();
+        lbQuantity3 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -74,6 +77,8 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
         tfMovieQuantity = new javax.swing.JTextField();
         tfMoviePrice = new javax.swing.JTextField();
         tfMovieSold = new javax.swing.JTextField();
+        tfMoviePurchasePrice = new javax.swing.JTextField();
+        lbQuantity4 = new javax.swing.JLabel();
         pMusic = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         lbName2 = new javax.swing.JLabel();
@@ -88,6 +93,8 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
         tfMusicQuantity = new javax.swing.JTextField();
         tfMusicPrice = new javax.swing.JTextField();
         tfMusicSold = new javax.swing.JTextField();
+        tfMusicPurchasePrice = new javax.swing.JTextField();
+        lbQuantity5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Create New Product");
@@ -166,6 +173,8 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
 
         lbSold.setText("Sold");
 
+        lbQuantity3.setText("Purchase Price");
+
         javax.swing.GroupLayout pBookLayout = new javax.swing.GroupLayout(pBook);
         pBook.setLayout(pBookLayout);
         pBookLayout.setHorizontalGroup(
@@ -202,11 +211,15 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
                     .addGroup(pBookLayout.createSequentialGroup()
                         .addComponent(lbQuantity)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tfBookQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfBookQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pBookLayout.createSequentialGroup()
+                        .addComponent(lbQuantity3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfBookPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(136, 136, 136))
         );
 
-        pBookLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfBookAuthor, tfBookName, tfBookPrice, tfBookPublisher, tfBookQuantity, tfBookSold});
+        pBookLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfBookAuthor, tfBookName, tfBookPrice, tfBookPublisher, tfBookPurchasePrice, tfBookQuantity, tfBookSold});
 
         pBookLayout.setVerticalGroup(
             pBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,6 +243,10 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
                         .addGroup(pBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbQuantity)
                             .addComponent(tfBookQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbQuantity3)
+                            .addComponent(tfBookPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbPrice)
@@ -279,6 +296,8 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
 
         lbSold1.setText("Sold");
 
+        lbQuantity4.setText("Purchase Price");
+
         javax.swing.GroupLayout pMovieLayout = new javax.swing.GroupLayout(pMovie);
         pMovie.setLayout(pMovieLayout);
         pMovieLayout.setHorizontalGroup(
@@ -305,23 +324,20 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
                                     .addComponent(tfMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(55, 55, 55)
                 .addGroup(pMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(pMovieLayout.createSequentialGroup()
-                            .addComponent(lbSold1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfMovieSold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pMovieLayout.createSequentialGroup()
-                            .addComponent(lbPrice1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                            .addComponent(tfMoviePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pMovieLayout.createSequentialGroup()
-                        .addComponent(lbQuantity1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfMovieQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lbSold1)
+                    .addComponent(lbPrice1)
+                    .addComponent(lbQuantity1)
+                    .addComponent(lbQuantity4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfMoviePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfMoviePurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfMovieQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfMovieSold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(127, 127, 127))
         );
 
-        pMovieLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfMovieActors, tfMovieDirector, tfMovieName, tfMoviePrice, tfMovieQuantity, tfMovieSold});
+        pMovieLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfMovieActors, tfMovieDirector, tfMovieName, tfMoviePrice, tfMoviePurchasePrice, tfMovieQuantity, tfMovieSold});
 
         pMovieLayout.setVerticalGroup(
             pMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,6 +361,10 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
                         .addGroup(pMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbQuantity1)
                             .addComponent(tfMovieQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbQuantity4)
+                            .addComponent(tfMoviePurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pMovieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbPrice1)
@@ -378,6 +398,8 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
                 tfMusicSingerActionPerformed(evt);
             }
         });
+
+        lbQuantity5.setText("Purchase Price");
 
         javax.swing.GroupLayout pMusicLayout = new javax.swing.GroupLayout(pMusic);
         pMusic.setLayout(pMusicLayout);
@@ -413,12 +435,16 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
                         .addComponent(tfMusicPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pMusicLayout.createSequentialGroup()
                         .addComponent(lbQuantity2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfMusicQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pMusicLayout.createSequentialGroup()
+                        .addComponent(lbQuantity5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfMusicQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfMusicPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(129, 129, 129))
         );
 
-        pMusicLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfMusicName, tfMusicPrice, tfMusicQuantity, tfMusicSinger, tfMusicSold, tfMusicType});
+        pMusicLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfMusicName, tfMusicPrice, tfMusicPurchasePrice, tfMusicQuantity, tfMusicSinger, tfMusicSold, tfMusicType});
 
         pMusicLayout.setVerticalGroup(
             pMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,6 +468,10 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
                         .addGroup(pMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbQuantity2)
                             .addComponent(tfMusicQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbQuantity5)
+                            .addComponent(tfMusicPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbPrice2)
@@ -511,107 +541,130 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        
-        int id = this.productController.getLastId();
+
+        int id = this.productController.getLastId() + 1;
         if (rdBook.isSelected()) {
             if (!this.validateBook()) {
                 return;
             }
-            
+
             this.productController.addBook(makeBookRecord(), id);
         } else if (rdMovie.isSelected()) {
-            if (!this.validateMovie())
+            if (!this.validateMovie()) {
                 return;
-            
+            }
+
             this.productController.addMovie(makeMovieRecord(), id);
         } else {
-            if (!this.validateMusic())
+            if (!this.validateMusic()) {
                 return;
-            
+            }
+
             this.productController.addMusic(makeMusicRecord(), id);
         }
         setVisible(false);
         dispose();
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private ArrayList<String> makeBookRecord () {
+    private ArrayList<String> makeBookRecord() {
         ArrayList<String> newBook = new ArrayList<>();
         newBook.add(tfBookName.getText());
         newBook.add(tfBookAuthor.getText());
         newBook.add(tfBookPublisher.getText());
         newBook.add(tfBookQuantity.getText());
+        newBook.add(tfBookPurchasePrice.getText());
         newBook.add(tfBookPrice.getText());
         newBook.add(tfBookSold.getText());
         return newBook;
     }
-    
-    private ArrayList<String> makeMovieRecord () {
+
+    private ArrayList<String> makeMovieRecord() {
         ArrayList<String> newMovie = new ArrayList<>();
         newMovie.add(tfMovieName.getText());
         newMovie.add(tfMovieDirector.getText());
         newMovie.add(tfMovieActors.getText());
         newMovie.add(tfMovieQuantity.getText());
+        newMovie.add(tfBookPurchasePrice.getText());
         newMovie.add(tfMoviePrice.getText());
         newMovie.add(tfMovieSold.getText());
         return newMovie;
     }
-        
-    private ArrayList<String> makeMusicRecord () {
+
+    private ArrayList<String> makeMusicRecord() {
         ArrayList<String> newMusic = new ArrayList<>();
         newMusic.add(tfMusicName.getText());
         newMusic.add(tfMusicSinger.getText());
         newMusic.add(tfMusicType.getText());
         newMusic.add(tfMusicQuantity.getText());
+        newMusic.add(tfBookPurchasePrice.getText());
         newMusic.add(tfMusicPrice.getText());
         newMusic.add(tfMusicSold.getText());
         return newMusic;
     }
-    
+
     private boolean validateBook() {
-        if (tfBookName.getText().isEmpty())
+        if (tfBookName.getText().isEmpty()) {
             return false;
-        if (tfBookAuthor.getText().isEmpty()) 
+        }
+        if (tfBookAuthor.getText().isEmpty()) {
             return false;
-        if (tfBookPublisher.getText().isEmpty())
+        }
+        if (tfBookPublisher.getText().isEmpty()) {
             return false;
-        if (tfBookQuantity.getText().isEmpty())
+        }
+        if (tfBookQuantity.getText().isEmpty()) {
             return false;
-        if (tfBookPrice.getText().isEmpty())
+        }
+        if (tfBookPrice.getText().isEmpty()) {
             return false;
-        if (tfBookSold.getText().isEmpty())
+        }
+        if (tfBookSold.getText().isEmpty()) {
             return false;
+        }
         return true;
     }
-    
+
     private boolean validateMovie() {
-        if (tfMovieName.getText().isEmpty())
+        if (tfMovieName.getText().isEmpty()) {
             return false;
-        if (tfMovieDirector.getText().isEmpty()) 
+        }
+        if (tfMovieDirector.getText().isEmpty()) {
             return false;
-        if (tfMovieActors.getText().isEmpty())
+        }
+        if (tfMovieActors.getText().isEmpty()) {
             return false;
-        if (tfMovieQuantity.getText().isEmpty())
+        }
+        if (tfMovieQuantity.getText().isEmpty()) {
             return false;
-        if (tfMoviePrice.getText().isEmpty())
+        }
+        if (tfMoviePrice.getText().isEmpty()) {
             return false;
-        if (tfMovieSold.getText().isEmpty())
+        }
+        if (tfMovieSold.getText().isEmpty()) {
             return false;
+        }
         return true;
     }
-    
+
     private boolean validateMusic() {
-        if (tfMusicName.getText().isEmpty())
+        if (tfMusicName.getText().isEmpty()) {
             return false;
-        if (tfMusicSinger.getText().isEmpty()) 
+        }
+        if (tfMusicSinger.getText().isEmpty()) {
             return false;
-        if (tfMusicType.getText().isEmpty())
+        }
+        if (tfMusicType.getText().isEmpty()) {
             return false;
-        if (tfMusicQuantity.getText().isEmpty())
+        }
+        if (tfMusicQuantity.getText().isEmpty()) {
             return false;
-        if (tfMusicPrice.getText().isEmpty())
+        }
+        if (tfMusicPrice.getText().isEmpty()) {
             return false;
-        if (tfMusicSold.getText().isEmpty())
+        }
+        if (tfMusicSold.getText().isEmpty()) {
             return false;
+        }
         return true;
     }
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -625,6 +678,7 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
         tfBookAuthor.setText("");
         tfBookPublisher.setText("");
         tfBookQuantity.setText("");
+        tfBookPurchasePrice.setText("");
         tfBookPrice.setText("");
         tfBookSold.setText("");
     }
@@ -634,6 +688,7 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
         tfMovieDirector.setText("");
         tfMovieActors.setText("");
         tfMovieQuantity.setText("");
+        tfBookPurchasePrice.setText("");
         tfMoviePrice.setText("");
         tfMovieSold.setText("");
     }
@@ -643,6 +698,7 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
         tfMusicSinger.setText("");
         tfMusicType.setText("");
         tfMusicQuantity.setText("");
+        tfBookPurchasePrice.setText("");
         tfMusicPrice.setText("");
         tfMusicSold.setText("");
     }
@@ -693,6 +749,9 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
     private javax.swing.JLabel lbQuantity;
     private javax.swing.JLabel lbQuantity1;
     private javax.swing.JLabel lbQuantity2;
+    private javax.swing.JLabel lbQuantity3;
+    private javax.swing.JLabel lbQuantity4;
+    private javax.swing.JLabel lbQuantity5;
     private javax.swing.JLabel lbSold;
     private javax.swing.JLabel lbSold1;
     private javax.swing.JLabel lbSold2;
@@ -706,16 +765,19 @@ public class CreateNewProductFrame extends javax.swing.JDialog {
     private javax.swing.JTextField tfBookName;
     private javax.swing.JTextField tfBookPrice;
     private javax.swing.JTextField tfBookPublisher;
+    private javax.swing.JTextField tfBookPurchasePrice;
     private javax.swing.JTextField tfBookQuantity;
     private javax.swing.JTextField tfBookSold;
     private javax.swing.JTextField tfMovieActors;
     private javax.swing.JTextField tfMovieDirector;
     private javax.swing.JTextField tfMovieName;
     private javax.swing.JTextField tfMoviePrice;
+    private javax.swing.JTextField tfMoviePurchasePrice;
     private javax.swing.JTextField tfMovieQuantity;
     private javax.swing.JTextField tfMovieSold;
     private javax.swing.JTextField tfMusicName;
     private javax.swing.JTextField tfMusicPrice;
+    private javax.swing.JTextField tfMusicPurchasePrice;
     private javax.swing.JTextField tfMusicQuantity;
     private javax.swing.JTextField tfMusicSinger;
     private javax.swing.JTextField tfMusicSold;

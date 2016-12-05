@@ -9,25 +9,25 @@ package mediaone;
  *
  * @author Administrator
  */
-public class Music extends Product{
+public class Music extends Product {
 
     private String singer;
     private String type;
     private int year;
-    
-    public Music () {
-        
+
+    public Music() {
+
     }
 
-    public Music(int id, String name, int quantity, int price, String singer, String type, int year) {
-        super(id, name, quantity, price);
+    public Music(int id, String name, int quantity, int purchasePrice, int price, String singer, String type, int year) {
+        super(id, name, quantity, purchasePrice, price);
         this.singer = singer;
         this.type = type;
         this.year = year;
     }
 
-    public Music(int id, String name, int quantity, int price, int sold, String singer, String type, int year) {
-        super(id, name, quantity, price, sold);
+    public Music(int id, String name, int quantity, int purchasePrice, int price, int sold, String singer, String type, int year) {
+        super(id, name, quantity, purchasePrice, price, sold);
         this.singer = singer;
         this.type = type;
         this.year = year;
@@ -56,6 +56,5 @@ public class Music extends Product{
     public void setYear(int year) {
         this.year = year;
     }
-
 
 }

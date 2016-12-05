@@ -29,13 +29,13 @@ public class Main {
 
         System.out.println("Finish!");
 
-        Music music1 = new Music(1, "Quoc Ca", 10, 100, "Nam Cao", "Quoc Te", 1945);
+        Music music1 = new Music(1, "Quoc Ca", 10, 80, 100, "Nam Cao", "Quoc Te", 1945);
 
         ArrayList<String> actors = new ArrayList<>();
         actors.add("Johnny Deep");
-        Movie movie1 = new Movie(2, "Caribe", 10, 100, 0, actors, "David Scoth");
+        Movie movie1 = new Movie(2, "Caribe", 10, 70, 100, 0, actors, "David Scoth");
 
-        Book book1 = new Book(3, "Harry Potter", 20, 40, 1, "J.K.Rowling", "Ly Lan");
+        Book book1 = new Book(3, "Harry Potter", 20, 30, 40, 1, "J.K.Rowling", "Ly Lan");
 
         Employee tester = new Employee("Pia", 100);
         Bill bill = new Bill();

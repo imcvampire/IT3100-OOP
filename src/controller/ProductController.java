@@ -47,8 +47,9 @@ public class ProductController {
         newRecord.setAuthor(book.get(1));
         newRecord.setPublisher(book.get(2));
         newRecord.setQuantity(Integer.parseInt(book.get(3)));
-        newRecord.setPrice(Integer.parseInt(book.get(4)));
-        newRecord.setSold(Integer.parseInt(book.get(5)));
+        newRecord.setPurchasePrice(Integer.parseInt(book.get(4)));
+        newRecord.setPrice(Integer.parseInt(book.get(5)));
+        newRecord.setSold(Integer.parseInt(book.get(6)));
 
         dsSP.add(newRecord);
     }
@@ -63,8 +64,9 @@ public class ProductController {
         actors.addAll(Arrays.asList(movieActors));
         newRecord.setActors(actors);
         newRecord.setQuantity(Integer.parseInt(movie.get(3)));
-        newRecord.setPrice(Integer.parseInt(movie.get(4)));
-        newRecord.setSold(Integer.parseInt(movie.get(5)));
+        newRecord.setPurchasePrice(Integer.parseInt(movie.get(4)));
+        newRecord.setPrice(Integer.parseInt(movie.get(5)));
+        newRecord.setSold(Integer.parseInt(movie.get(6)));
 
         dsSP.add(newRecord);
     }
@@ -76,8 +78,9 @@ public class ProductController {
         newRecord.setSinger(music.get(1));
         newRecord.setType(music.get(2));
         newRecord.setQuantity(Integer.parseInt(music.get(3)));
-        newRecord.setPrice(Integer.parseInt(music.get(4)));
-        newRecord.setSold(Integer.parseInt(music.get(5)));
+        newRecord.setPurchasePrice(Integer.parseInt(music.get(4)));
+        newRecord.setPrice(Integer.parseInt(music.get(5)));
+        newRecord.setSold(Integer.parseInt(music.get(6)));
 
         dsSP.add(newRecord);
     }
@@ -102,33 +105,36 @@ public class ProductController {
         updateProduct.setName(data.get(0));
         if (updateType.equals("All")) {
             updateProduct.setQuantity(Integer.parseInt(data.get(1)));
-            updateProduct.setPrice(Integer.parseInt(data.get(2)));
-            updateProduct.setSold(Integer.parseInt(data.get(3)));
+            updateProduct.setPurchasePrice(Integer.parseInt(data.get(2)));
+            updateProduct.setPrice(Integer.parseInt(data.get(3)));
+            updateProduct.setSold(Integer.parseInt(data.get(4)));
         } else if (updateType.equals("Book")) {
             Book updateBook = (Book) updateProduct;
             updateBook.setAuthor(data.get(1));
             updateBook.setPublisher(data.get(2));
         } else if (updateType.equals("Movie")) {
             Movie updateMovie = (Movie) updateProduct;
-            String[] actorString = data.get(1).split(",");
+            updateMovie.setDirector(data.get(1));
+            String[] actorString = data.get(2).split(",");
             ArrayList<String> actors = new ArrayList<>();
             actors.add(actorString[0]);
             updateMovie.setActors(actors);
-            updateMovie.setDirector(data.get(2));
         } else if (updateType.equals("Music")) {
             Music updateMusic = (Music) updateProduct;
             updateMusic.setSinger(data.get(1));
             updateMusic.setType(data.get(2));
             updateMusic.setYear(Integer.parseInt(data.get(3)));
             updateMusic.setQuantity(Integer.parseInt(data.get(4)));
-            updateMusic.setPrice(Integer.parseInt(data.get(5)));
-            updateMusic.setSold(Integer.parseInt(data.get(6)));
+            updateMusic.setPurchasePrice(Integer.parseInt(data.get(5)));
+            updateMusic.setPrice(Integer.parseInt(data.get(6)));
+            updateMusic.setSold(Integer.parseInt(data.get(7)));
         }
 
         if (!updateType.equals("All") && !updateType.equals("Music")) {
             updateProduct.setQuantity(Integer.parseInt(data.get(3)));
-            updateProduct.setPrice(Integer.parseInt(data.get(4)));
-            updateProduct.setSold(Integer.parseInt(data.get(5)));
+            updateProduct.setPurchasePrice(Integer.parseInt(data.get(4)));
+            updateProduct.setPrice(Integer.parseInt(data.get(5)));
+            updateProduct.setSold(Integer.parseInt(data.get(6)));
         }
     }
 

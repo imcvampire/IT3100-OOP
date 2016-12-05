@@ -81,16 +81,16 @@ public class ProductManagementFrame extends javax.swing.JFrame {
     }
 
     private void loadColumnName() {
-        String[] columnAll = {"id", "Name", "Type", "Quantity", "Price", "Sold"};
+        String[] columnAll = {"id", "Name", "Type", "Quantity", "Purchase Price", "Price", "Sold"};
         this.tblAllProductModel.setColumnIdentifiers(columnAll);
 
-        String[] columnBook = {"id", "Name", "Author", "Publisher", "Quantity", "Price", "Sold"};
+        String[] columnBook = {"id", "Name", "Author", "Publisher", "Quantity", "Purchase Price", "Price", "Sold"};
         this.tblBookModel.setColumnIdentifiers(columnBook);
 
-        String[] columnMovie = {"id", "Name", "Director", "Actors", "Quantity", "Price", "Sold"};
+        String[] columnMovie = {"id", "Name", "Director", "Actors", "Quantity", "Purchase Price", "Price", "Sold"};
         this.tblMovieModel.setColumnIdentifiers(columnMovie);
 
-        String[] columnMusic = {"id", "Name", "Singer", "Type", "Year", "Quantity", "Price", "Sold"};
+        String[] columnMusic = {"id", "Name", "Singer", "Type", "Year", "Quantity", "Purchase Price", "Price", "Sold"};
         this.tblMusicModel.setColumnIdentifiers(columnMusic);
     }
 
@@ -107,6 +107,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
             row.add("Music");
         }
         row.add(Integer.toString(product.getQuantity()));
+        row.add(Integer.toString(product.getPurchasePrice()));
         row.add(Integer.toString(product.getPrice()));
         row.add(Integer.toString(product.getSold()));
 
@@ -121,6 +122,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
         row.add(book.getAuthor());
         row.add(book.getPublisher());
         row.add(Integer.toString(book.getQuantity()));
+        row.add(Integer.toString(book.getPurchasePrice()));
         row.add(Integer.toString(book.getPrice()));
         row.add(Integer.toString(book.getSold()));
 
@@ -135,6 +137,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
         row.add(movie.getDirector());
         row.add(movie.getActors().toString());
         row.add(Integer.toString(movie.getQuantity()));
+        row.add(Integer.toString(movie.getPurchasePrice()));
         row.add(Integer.toString(movie.getPrice()));
         row.add(Integer.toString(movie.getSold()));
 
@@ -150,6 +153,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
         row.add(music.getType());
         row.add(Integer.toString(music.getYear()));
         row.add(Integer.toString(music.getQuantity()));
+        row.add(Integer.toString(music.getPurchasePrice()));
         row.add(Integer.toString(music.getPrice()));
         row.add(Integer.toString(music.getSold()));
 
@@ -430,6 +434,9 @@ public class ProductManagementFrame extends javax.swing.JFrame {
             rowSelect = rowsTable[3];
         }
 
+        if (id == 0) {
+            return;
+        }
         this.productController.update(this.getData(tableType, rowSelect), id, tableType);
 
         loadData(dsSP);
@@ -447,6 +454,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
             data.add(tblAll.getValueAt(row, 3).toString());
             data.add(tblAll.getValueAt(row, 4).toString());
             data.add(tblAll.getValueAt(row, 5).toString());
+            data.add(tblAll.getValueAt(row, 6).toString());
         } else if (type.equals("Book")) {
             data.add(tblBook.getValueAt(row, 1).toString());
             data.add(tblBook.getValueAt(row, 2).toString());
@@ -454,6 +462,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
             data.add(tblBook.getValueAt(row, 4).toString());
             data.add(tblBook.getValueAt(row, 5).toString());
             data.add(tblBook.getValueAt(row, 6).toString());
+            data.add(tblBook.getValueAt(row, 7).toString());
         } else if (type.equals("Movie")) {
             data.add(tblMovie.getValueAt(row, 1).toString());
             data.add(tblMovie.getValueAt(row, 2).toString());
@@ -461,6 +470,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
             data.add(tblMovie.getValueAt(row, 4).toString());
             data.add(tblMovie.getValueAt(row, 5).toString());
             data.add(tblMovie.getValueAt(row, 6).toString());
+            data.add(tblMovie.getValueAt(row, 7).toString());
         } else if (type.equals("Music")) {
             data.add(tblMusic.getValueAt(row, 1).toString());
             data.add(tblMusic.getValueAt(row, 2).toString());
@@ -469,6 +479,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
             data.add(tblMusic.getValueAt(row, 5).toString());
             data.add(tblMusic.getValueAt(row, 6).toString());
             data.add(tblMusic.getValueAt(row, 7).toString());
+            data.add(tblMusic.getValueAt(row, 8).toString());
         }
 
         return data;
@@ -481,7 +492,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int[] rowsTable = getRowsTable();
         int id = getIdDelete(rowsTable);
-        
+
         this.productController.deleteProduct(id);
         loadData(dsSP);
     }//GEN-LAST:event_btnDeleteActionPerformed
