@@ -208,6 +208,11 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="tfBookQuantity" linkSize="1" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="lbQuantity3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="tfBookPurchasePrice" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
               </Group>
@@ -239,6 +244,11 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tfBookQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbQuantity3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfBookPurchasePrice" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -308,6 +318,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfBookSold">
         </Component>
+        <Component class="javax.swing.JTextField" name="tfBookPurchasePrice">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbQuantity3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Purchase Price"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JButton" name="btnAdd">
@@ -371,23 +388,17 @@
                   </Group>
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbSold1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="tfMovieSold" linkSize="2" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbPrice1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="23" max="32767" attributes="0"/>
-                              <Component id="tfMoviePrice" linkSize="2" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lbQuantity1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfMovieQuantity" linkSize="2" min="-2" pref="77" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="lbSold1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbPrice1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbQuantity1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbQuantity4" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="tfMoviePrice" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfMoviePurchasePrice" linkSize="2" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                      <Component id="tfMovieQuantity" linkSize="2" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                      <Component id="tfMovieSold" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
               </Group>
@@ -419,6 +430,11 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbQuantity1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tfMovieQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbQuantity4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfMoviePurchasePrice" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -488,6 +504,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfMovieSold">
         </Component>
+        <Component class="javax.swing.JTextField" name="tfMoviePurchasePrice">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbQuantity4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Purchase Price"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="pMusic">
@@ -536,8 +559,13 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="lbQuantity2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="tfMusicQuantity" linkSize="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="lbQuantity5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="tfMusicPurchasePrice" linkSize="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
@@ -570,6 +598,11 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbQuantity2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tfMusicQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbQuantity5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfMusicPurchasePrice" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -641,6 +674,13 @@
         <Component class="javax.swing.JTextField" name="tfMusicPrice">
         </Component>
         <Component class="javax.swing.JTextField" name="tfMusicSold">
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfMusicPurchasePrice">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbQuantity5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Purchase Price"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
