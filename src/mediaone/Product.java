@@ -7,35 +7,63 @@ package mediaone;
 
 /**
  *
- * @author Admin
+ * @author Administrator
  */
-public abstract class Product {
+public abstract class Product implements Paided, Get {
 
+    protected int id;
     protected String name;
     protected int quantity;
+    protected int purchasePrice;
     protected int price;
     protected int sold;
 
-    public Product(String name, int quantity, int price) {
-        this.name = name;
-        this.quantity = quantity;
-        this.price = price;
-        this.sold = 0;
+    public Product() {
+        
     }
 
-    public Product(String name, int quantity, int price, int sold) {
-        this(name, quantity, price);
+    public Product(int id, String name, int quantity, int purchasePrice, int price) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.purchasePrice = purchasePrice;
+        this.price = price;
+    }
+
+    public Product(int id, String name, int quantity, int purchasePrice, int price, int sold) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.purchasePrice = purchasePrice;
+        this.price = price;
         this.sold = sold;
     }
 
-    public void decreaseQuantity(int number) {
-        this.quantity += number;
+    public int getPurchasePrice() {
+        return purchasePrice;
     }
 
-    public void increaseQuantity(int number) {
+    public void setPurchasePrice(int purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public void decreaseQuantity(int number) {
         this.quantity -= number;
     }
 
+    public void increaseQuantity(int number) {
+        this.quantity += number;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
     public String getName() {
         return name;
     }
@@ -66,5 +94,9 @@ public abstract class Product {
 
     public void setSold(int sold) {
         this.sold = sold;
+    }
+    
+    public void increaseSold(int number) {
+        this.sold += number;
     }
 }

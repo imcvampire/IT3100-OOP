@@ -11,18 +11,23 @@ import java.util.ArrayList;
  *
  * @author Administrator
  */
-public class Movie extends Product{
+public class Movie extends Product {
+
     ArrayList<String> actors;
     String director;
 
-    public Movie(ArrayList<String> actors, String director, String name, int quantity, int price) {
-        super(name, quantity, price);
+    public Movie() {
+
+    }
+
+    public Movie(int id, String name, int quantity, int purchasePrice, int price, ArrayList<String> actors, String director) {
+        super(id, name, quantity, purchasePrice, price);
         this.actors = actors;
         this.director = director;
     }
 
-    public Movie(ArrayList<String> actors, String director, String name, int quantity, int price, int sold) {
-        super(name, quantity, price, sold);
+    public Movie(int id, String name, int quantity, int price, int purchasePrice, int sold, ArrayList<String> actors, String director) {
+        super(id, name, quantity, purchasePrice, price, sold);
         this.actors = actors;
         this.director = director;
     }

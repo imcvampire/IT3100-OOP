@@ -5,47 +5,85 @@
  */
 package mediaone;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
- * @author Admin
+ * @author Administrator
  */
-public class Employee {
+public class Employee implements Paided {
+
     private int maNV;
-    private String tenNV;
-    private int luong;
 
-    public Employee(int maNV,String tenNV,int luong){
+    private String name;
+    private int salary;
+
+    private Map<Integer, Boolean> historySalary = new HashMap<Integer, Boolean>();
+
+    public Employee() {
+
+    }
+
+    public Employee(int maNV, String name, int salary) {
         this.maNV = maNV;
-        this.tenNV = tenNV;
-        this.luong = luong;
+        this.name = name;
+        this.salary = salary;
+        setSimpleHistory();
     }
 
-    Employee() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    public void setMaNV(int maNV) {
-        this.maNV = maNV;
-    }
-
-    public void setTenNV(String tenNV) {
-        this.tenNV = tenNV;
-    }
-
-    public void setLuong(int luong) {
-        this.luong = luong;
+    /**
+     * Set History get Salary simple
+     */
+    public void setSimpleHistory() {
+        historySalary.put(1, true);
+        historySalary.put(2, true);
+        historySalary.put(3, true);
+        historySalary.put(4, true);
+        historySalary.put(5, true);
+        historySalary.put(6, true);
+        historySalary.put(7, true);
+        historySalary.put(8, true);
+        historySalary.put(9, true);
+        historySalary.put(10, true);
+        historySalary.put(11, true);
+        historySalary.put(12, false);
     }
     
-    
+    public void paided(int month) {
+        historySalary.replace(month, true);
+    }
+
+    public Map<Integer, Boolean> getHistorySalary() {
+        return historySalary;
+    }
+
+    public void setHistorySalary(HashMap historySalary) {
+        this.historySalary = historySalary;
+    }
+
     public int getMaNV() {
         return maNV;
     }
 
-    public String getTenNV() {
-        return tenNV;
+    public void setMaNV(int maNV) {
+        this.maNV = maNV;
     }
 
-    public int getLuong() {
-        return luong;
+    public String getName() {
+        return name;
     }
-    
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
 }
