@@ -19,14 +19,16 @@ public class Store {
     private ArrayList<Employee> dsNV = new ArrayList();
     private ArrayList<Product> dsSP = new ArrayList();
     private ArrayList<Bill> dsTT = new ArrayList();
+    private HistoryGetPaid historyGetPaid = new HistoryGetPaid();
+    private int fund;
 
     // Constructor
-    public Store(int money) {
+    public Store(int money, int fund) {
         this.monthlyCost = money;
+        this.fund = fund;
     }
-    
-    //Getter Setter
 
+    //Getter Setter
     public int getMonthlyCost() {
         return monthlyCost;
     }
@@ -55,8 +57,30 @@ public class Store {
         return dsTT;
     }
 
+    public int getFund() {
+        return fund;
+    }
+
+    public void setFund(int fund) {
+        this.fund = fund;
+    }
+
     public void setDsTT(ArrayList<Bill> dsTT) {
         this.dsTT = dsTT;
+    }
+
+    public HistoryGetPaid getHistoryGetPaid() {
+        return historyGetPaid;
+    }
+
+    public void setHistoryGetPaid(HistoryGetPaid historyGetPaid) {
+        this.historyGetPaid = historyGetPaid;
+    }
+
+    public void decreaseFunds(int fee) {
+        if (this.fund >= fee) {
+            this.fund -= fee;
+        }
     }
 
     public void addEmployee(String ten, int salary) {
@@ -65,7 +89,7 @@ public class Store {
         employee.setName(ten);
         dsNV.add(employee);
     }
-    
+
     public void addEmployee(Employee employee) {
         dsNV.add(employee);
     }

@@ -5,17 +5,71 @@
  */
 package ui;
 
+import controller.AnalysisController;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import mediaone.Store;
+import ui.presenter.DoanhThuTableModel;
+import ui.presenter.ProfitTableModel;
+
 /**
  *
  * @author Administrator
  */
 public class AnalysisManagementFrame extends javax.swing.JFrame {
 
+    private AnalysisController analysisController;
+    private DoanhThuTableModel tblDoanhThuTableModel;
+    private ProfitTableModel tblProfitTableModel;
+
     /**
      * Creates new form AnalysisManagementFrame
      */
-    public AnalysisManagementFrame() {
+    public AnalysisManagementFrame(Store store) {
         initComponents();
+        this.analysisController = new AnalysisController(store, this);
+        initTableModel();
+        loadCollumn();
+
+        setModel();
+        setReorder();
+    }
+
+    /**
+     * Init TableModel, Set Model, Set Reorder, load Column, load Data
+     */
+    private void initTableModel() {
+        tblDoanhThuTableModel = new DoanhThuTableModel();
+        tblProfitTableModel = new ProfitTableModel();
+    }
+
+    private void setModel() {
+        tblDoanhThu.setModel(tblDoanhThuTableModel);
+        tblProfit.setModel(tblProfitTableModel);
+    }
+
+    private void setReorder() {
+        tblDoanhThu.getTableHeader().setReorderingAllowed(false);
+        tblProfit.getTableHeader().setReorderingAllowed(false);
+    }
+
+    private void loadCollumn() {
+        String[] columnDoanhThu = {"id", "Product Name", "Price", "Quantity", "Sub Total"};
+        this.tblDoanhThuTableModel.setColumnIdentifiers(columnDoanhThu);
+
+        String[] columnProfit = {"id", "Product Name", "Price", "Quantity", "Sub Total"};
+        this.tblProfitTableModel.setColumnIdentifiers(columnProfit);
+    }
+
+    /**
+     * Load Data into Table model
+     */
+    private void loadData() {
+        lbTotalGet.setText("");
+        lbProfit.setText("");
+        
+        
     }
 
     /**
@@ -27,59 +81,214 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tfDateStart = new javax.swing.JTextField();
+        tfDateEnd = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        btnCheck = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
+        pThongKe = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lbTotalGet = new javax.swing.JLabel();
+        lbProfit = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblDoanhThu = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblProfit = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Analysis Management");
         setLocation(new java.awt.Point(400, 300));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("Thống Kê");
+
+        jLabel3.setText("Từ");
+
+        jLabel10.setText("Đến");
+
+        btnCheck.setText("Xem");
+        btnCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckActionPerformed(evt);
+            }
+        });
+
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Tổng Doanh Thu");
+
+        jLabel4.setText("Lợi Nhuận");
+
+        lbTotalGet.setText("jLabel5");
+
+        lbProfit.setText("jLabel6");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbProfit)
+                    .addComponent(lbTotalGet))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbTotalGet))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lbProfit))
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
+
+        pThongKe.addTab("Thống Kê", jPanel1);
+
+        tblDoanhThu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblDoanhThu);
+
+        pThongKe.addTab("Doanh Thu", jScrollPane2);
+
+        tblProfit.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tblProfit);
+
+        pThongKe.addTab("Lợi Nhuận", jScrollPane3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 597, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfDateStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfDateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCheck)
+                                .addGap(20, 20, 20)
+                                .addComponent(btnCancel))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(pThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfDateEnd, tfDateStart});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 318, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(pThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel10)
+                    .addComponent(tfDateStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfDateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCheck)
+                    .addComponent(btnCancel))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
+
+        pThongKe.getAccessibleContext().setAccessibleName("Thống Kê");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AnalysisManagementFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AnalysisManagementFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AnalysisManagementFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AnalysisManagementFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
+
+        if (!checkForm()) {
+            return;
         }
-        //</editor-fold>
+        String start = tfDateStart.getText();
+        String end = tfDateEnd.getText();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AnalysisManagementFrame().setVisible(true);
-            }
-        });
+        try {
+            analysisController.getInformation(start, end);
+        } catch (ParseException ex) {
+            Logger.getLogger(AnalysisManagementFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnCheckActionPerformed
+
+    private boolean checkForm() {
+        return tfDateEnd.getText().equals("") && tfDateStart.getText().equals("");
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnCheck;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lbProfit;
+    private javax.swing.JLabel lbTotalGet;
+    private javax.swing.JTabbedPane pThongKe;
+    private javax.swing.JTable tblDoanhThu;
+    private javax.swing.JTable tblProfit;
+    private javax.swing.JTextField tfDateEnd;
+    private javax.swing.JTextField tfDateStart;
     // End of variables declaration//GEN-END:variables
 }

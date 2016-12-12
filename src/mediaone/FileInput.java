@@ -50,7 +50,7 @@ public class FileInput {
     }
 
     public static Store getStoreData() throws IOException {
-        Store store = new Store(0);
+        Store store = new Store(100, 2000);
         CSVReader reader = new CSVReader(new FileReader("store.csv"));
         return store;
     }

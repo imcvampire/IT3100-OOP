@@ -20,7 +20,7 @@ public class ProductManagementFrame extends javax.swing.JFrame {
 
     private DefaultTableModel tblAllProductModel, tblBookModel, tblMovieModel, tblMusicModel;
     private ArrayList<Product> dsSP = new ArrayList();
-    private ProductController productController = new ProductController();
+    private final ProductController productController = new ProductController();
 
     /**
      * Creates new form ProductManagementFrame

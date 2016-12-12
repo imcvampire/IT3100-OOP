@@ -9,7 +9,7 @@ package mediaone;
  *
  * @author Administrator
  */
-public abstract class Product {
+public abstract class Product implements Paided, Get {
 
     protected int id;
     protected String name;
@@ -48,11 +48,11 @@ public abstract class Product {
     }
 
     public void decreaseQuantity(int number) {
-        this.quantity += number;
+        this.quantity -= number;
     }
 
     public void increaseQuantity(int number) {
-        this.quantity -= number;
+        this.quantity += number;
     }
 
     public int getId() {
@@ -94,5 +94,9 @@ public abstract class Product {
 
     public void setSold(int sold) {
         this.sold = sold;
+    }
+    
+    public void increaseSold(int number) {
+        this.sold += number;
     }
 }

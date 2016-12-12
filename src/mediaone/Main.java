@@ -1,6 +1,7 @@
 package mediaone;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -37,19 +38,23 @@ public class Main {
 
         Book book1 = new Book(3, "Harry Potter", 20, 30, 40, 1, "J.K.Rowling", "Ly Lan");
 
-        Employee tester = new Employee("Pia", 100);
-        Bill bill = new Bill();
-
-        Store store = new Store(100);
-
+        Employee tester = new Employee(1, "Pia", 100);
+//        Bill bill = new Bill();
+        BillOneTime bill1 = new BillOneTime(1, new Date(), "Quỹ doanh nghiệp", 100, false, "For Party", "Hội Doanh Nghiệp");
+        BillPeriodic bill2 = new BillPeriodic(2, new Date(), "Hóa đơn tiền điện", 1000000, false, "1 Tháng 1 lần");
+        
+        // Init Store and add component
+        Store store = new Store(100, 2000);
         store.addProduct(music1);
         store.addProduct(movie1);
         store.addProduct(book1);
         store.addEmployee(tester);
-        store.addBill(bill);
+        store.addBill(bill1);
+        store.addBill(bill2);
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

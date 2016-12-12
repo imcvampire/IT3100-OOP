@@ -32,7 +32,14 @@ public class HomeController {
     }
     
     public void viewBillManagement() {
-        new BillManagementFrame().setVisible(true);
+        new BillManagementFrame(store).setVisible(true);
     }
     
+    public void viewSellingManagement() {
+        new SellingManagementFrame(store.getDsSP()).setVisible(true);
+    }
+    
+    public void viewAnalysisManagement() {
+        new AnalysisManagementFrame(store).setVisible(true);
+    }
 }

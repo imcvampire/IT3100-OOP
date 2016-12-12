@@ -57,7 +57,7 @@ public class HomeFrame extends javax.swing.JFrame {
         });
 
         homeBillManagement.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        homeBillManagement.setText("Quản Lý Hóa Đơn");
+        homeBillManagement.setText("Quản Lý Chi Phí");
         homeBillManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeBillManagementActionPerformed(evt);
@@ -93,7 +93,7 @@ public class HomeFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(homeBillManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(homeAnalysisManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +113,7 @@ public class HomeFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeSellingManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeSellingManagementActionPerformed
-        new SellingManagementFrame().setVisible(true);
+        homeController.viewSellingManagement();
     }//GEN-LAST:event_homeSellingManagementActionPerformed
 
     private void homeProductManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeProductManagementActionPerformed
@@ -121,11 +121,11 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_homeProductManagementActionPerformed
 
     private void homeBillManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBillManagementActionPerformed
-        new BillManagementFrame().setVisible(true);
+        homeController.viewBillManagement();
     }//GEN-LAST:event_homeBillManagementActionPerformed
 
     private void homeAnalysisManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeAnalysisManagementActionPerformed
-        new AnalysisManagementFrame().setVisible(true);
+        homeController.viewAnalysisManagement();
     }//GEN-LAST:event_homeAnalysisManagementActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
