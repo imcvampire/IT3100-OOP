@@ -45,10 +45,26 @@ public class Main {
         
         // Init Store and add component
         Store store = new Store(100, 2000);
-        store.addProduct(music1);
-        store.addProduct(movie1);
-        store.addProduct(book1);
-        store.addEmployee(tester);
+
+        try {
+            FileInput.getProductsList(store);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+
+//        store.addProduct(music1);
+//        store.addProduct(movie1);
+//        store.addProduct(book1);
+//        store.addEmployee(tester);
+
+        try {
+            FileInput.getEmployeeList(store);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+
         store.addBill(bill1);
         store.addBill(bill2);
 
