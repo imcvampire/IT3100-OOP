@@ -41,7 +41,7 @@ public class GetPaidManager {
         }
         return false;
     }
-    
+
     public void makeNewRecord() {
         GetPaidPerDay temp = new GetPaidPerDay();
     }
@@ -57,31 +57,101 @@ public class GetPaidManager {
         paidManager.addRecord(bill);
         store.decreaseFunds(bill.getCost());
     }
-    
+
     public int getDoanhThu(Date start, Date end) {
         int total = 0;
-        
+
         // Take Record return if no record found
         HistoryGetPaid historyInTime = new HistoryGetPaid();
         historyInTime.setHistory(historyGetPaid.getRecordInTime(start, end));
-        if (historyInTime.count()== 0) {
+        if (historyInTime.count() == 0) {
             return 0;
         }
 
         // loop and sum all total
         for (int i = 0; i < historyInTime.count(); i++) {
             GetPaidPerDay temp = historyInTime.getRecord(i);
-            
+
             getManager.setHistoryGet(temp.getHistoryGet());
-            
+
             total += getManager.getTotalGet();
         }
 
         return total;
     }
 
-    public int getProfit() {
-        
-        return 0;
+    public int getChiPhi(Date start, Date end) {
+        int total = 0;
+
+        // Take record return if no record found
+        HistoryGetPaid historyInTime = new HistoryGetPaid();
+        historyInTime.setHistory(historyGetPaid.getRecordInTime(start, end));
+        if (historyInTime.count() == 0) {
+            return 0;
+        }
+
+        // loop and sum all total
+        for (int i = 0; i < historyInTime.count(); i++) {
+            GetPaidPerDay temp = historyInTime.getRecord(i);
+
+            paidManager.setHistoryPaid(temp.getHistoryPaid());
+
+            total += paidManager.getTotalPaid();
+        }
+
+        return total;
+    }
+
+    public int getProfit(Date start, Date end) {
+        return getDoanhThu(start, end) - getChiPhi(start, end);
+    }
+
+    public ArrayList<Get> listAllGet(Date start, Date end) {
+        ArrayList<Get> result = new ArrayList<>();
+
+        HistoryGetPaid historyInTime = new HistoryGetPaid();
+        historyInTime.setHistory(historyGetPaid.getRecordInTime(start, end));
+        if (historyInTime.count() == 0) {
+            return result;
+        }
+
+        // loop and get all record
+        for (int i = 0; i < historyInTime.count(); i++) {
+            GetPaidPerDay temp = historyInTime.getRecord(i);
+
+            ArrayList<Get> tempPerDay = temp.getHistoryGet().getGet();
+            for (int j = 0; j < tempPerDay.size(); j++) {
+                result.add(tempPerDay.get(j));
+            }
+        }
+
+        return result;
+    }
+
+    public ArrayList<Paided> listAllPaided(Date start, Date end) {
+        ArrayList<Paided> result = new ArrayList<>();
+
+        //if doesn't get any record return
+        HistoryGetPaid historyInTime = new HistoryGetPaid();
+        historyInTime.setHistory(historyGetPaid.getRecordInTime(start, end));
+        if (historyInTime.count() == 0) {
+            return result;
+        }
+
+        // loop and get all record
+        for (int i = 0; i < historyInTime.count(); i++) {
+            GetPaidPerDay temp = historyInTime.getRecord(i);
+
+            ArrayList<Paided> tempPerDay = temp.getHistoryPaid().getPaidHistory();
+            for (int j = 0; j < tempPerDay.size(); j++) {
+                result.add(tempPerDay.get(j));
+            }
+        }
+
+        return result;
+    }
+
+    public void addHistoryRecordToResult(ArrayList<Get> gets) {
+
     }
 }
