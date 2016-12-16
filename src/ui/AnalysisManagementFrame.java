@@ -7,10 +7,19 @@ package ui;
 
 import controller.AnalysisController;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mediaone.Bill;
+import mediaone.Cart;
+import mediaone.CartItem;
+import mediaone.Employee;
+import mediaone.Get;
+import mediaone.Paided;
 import mediaone.Store;
+import ui.presenter.BillTableModel;
 import ui.presenter.DoanhThuTableModel;
+import ui.presenter.EmployeeTableModel;
 import ui.presenter.ProfitTableModel;
 
 /**
@@ -21,7 +30,8 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
 
     private AnalysisController analysisController;
     private DoanhThuTableModel tblDoanhThuTableModel;
-    private ProfitTableModel tblProfitTableModel;
+    private EmployeeTableModel tblEmployeeTableModel;
+    private BillTableModel tblBillTableModel;
 
     /**
      * Creates new form AnalysisManagementFrame
@@ -41,35 +51,97 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
      */
     private void initTableModel() {
         tblDoanhThuTableModel = new DoanhThuTableModel();
-        tblProfitTableModel = new ProfitTableModel();
+        tblEmployeeTableModel = new EmployeeTableModel();
+        tblBillTableModel = new BillTableModel();
     }
 
     private void setModel() {
         tblDoanhThu.setModel(tblDoanhThuTableModel);
-        tblProfit.setModel(tblProfitTableModel);
+        tblEmployee.setModel(tblEmployeeTableModel);
+        tblBill.setModel(tblBillTableModel);
     }
 
     private void setReorder() {
         tblDoanhThu.getTableHeader().setReorderingAllowed(false);
-        tblProfit.getTableHeader().setReorderingAllowed(false);
+        tblEmployee.getTableHeader().setReorderingAllowed(false);
+        tblBill.getTableHeader().setReorderingAllowed(false);
     }
 
     private void loadCollumn() {
         String[] columnDoanhThu = {"id", "Product Name", "Price", "Quantity", "Sub Total"};
         this.tblDoanhThuTableModel.setColumnIdentifiers(columnDoanhThu);
 
-        String[] columnProfit = {"id", "Product Name", "Price", "Quantity", "Sub Total"};
-        this.tblProfitTableModel.setColumnIdentifiers(columnProfit);
+        String[] columnEmployee = {"id", "Name", "Salary"};
+        this.tblEmployeeTableModel.setColumnIdentifiers(columnEmployee);
+
+        String[] columnBill = {"id", "Name", "Giá"};
+        this.tblBillTableModel.setColumnIdentifiers(columnBill);
     }
 
     /**
      * Load Data into Table model
      */
-    private void loadData() {
-        lbTotalGet.setText("");
-        lbProfit.setText("");
+    public void loadData(int DoanhThu, int cost, int profit, ArrayList<Get> listGet, ArrayList<Paided> listPaided) {
+        lbTotalGet.setText(Integer.toString(DoanhThu));
+        lbTotalCost.setText(Integer.toString(cost));
+        lbProfit.setText(Integer.toString(profit));
+        loadDataTableDoanhThu(listGet);
+        loadDataTablePaid(listPaided);
+    }
+
+    public void loadDataTableDoanhThu(ArrayList<Get> listGet) {
+        for (int i = 0; i < listGet.size(); i++) {
+            addGetToModel(listGet.get(i));
+        }
+    }
+
+    public void loadDataTablePaid(ArrayList<Paided> listPaided) {
+        for (int i = 0; i < listPaided.size(); i++) {
+            addPaidToModel(listPaided.get(i));
+        }
+    }
+
+    public void addGetToModel(Get get) {
+        ArrayList<String> row = new ArrayList<>();
+
+        if (get instanceof Cart) {
+            Cart cart = (Cart) get;
+            ArrayList<CartItem> listItems = cart.getListItems();
+            for (int i = 0; i < listItems.size(); i++) {
+                CartItem item = listItems.get(i);
+
+                row.add(Integer.toString(item.getItem().getId()));
+                row.add(item.getItem().getName());
+                row.add(Integer.toString(item.getItem().getPrice()));
+                row.add(Integer.toString(item.getQuantity()));
+                row.add(Integer.toString(item.getSubTotal()));
+            }
+
+        }
         
-        
+        tblDoanhThuTableModel.addRow(row.toArray());
+    }
+
+    public void addPaidToModel(Paided paided) {
+        ArrayList<String> row = new ArrayList<>();
+
+        if (paided instanceof Employee) {
+            Employee employee = (Employee) paided;
+
+            row.add(Integer.toString(employee.getMaNV()));
+            row.add(employee.getName());
+            row.add(Integer.toString(employee.getSalary()));
+
+            tblEmployeeTableModel.addRow(row.toArray());
+        } else if (paided instanceof Bill) {
+            Bill bill = (Bill) paided;
+
+            row.add(Integer.toString(bill.getId()));
+            row.add(bill.getName());
+            row.add(Integer.toString(bill.getCost()));
+
+            tblBillTableModel.addRow(row.toArray());
+        }
     }
 
     /**
@@ -94,10 +166,14 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         lbTotalGet = new javax.swing.JLabel();
         lbProfit = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lbTotalCost = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDoanhThu = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblProfit = new javax.swing.JTable();
+        tblEmployee = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblBill = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Analysis Management");
@@ -128,9 +204,13 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Lợi Nhuận");
 
-        lbTotalGet.setText("jLabel5");
+        lbTotalGet.setText("0");
 
-        lbProfit.setText("jLabel6");
+        lbProfit.setText("0");
+
+        jLabel5.setText("Tổng Chi Phí");
+
+        lbTotalCost.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -140,11 +220,13 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbProfit)
-                    .addComponent(lbTotalGet))
+                    .addComponent(lbTotalGet)
+                    .addComponent(lbTotalCost))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -154,11 +236,15 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbTotalGet))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbTotalCost))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lbProfit))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         pThongKe.addTab("Thống Kê", jPanel1);
@@ -178,7 +264,7 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
 
         pThongKe.addTab("Doanh Thu", jScrollPane2);
 
-        tblProfit.setModel(new javax.swing.table.DefaultTableModel(
+        tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -189,9 +275,24 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(tblProfit);
+        jScrollPane3.setViewportView(tblEmployee);
 
-        pThongKe.addTab("Lợi Nhuận", jScrollPane3);
+        pThongKe.addTab("Chi Phí Trả Lương", jScrollPane3);
+
+        tblBill.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblBill);
+
+        pThongKe.addTab("Chi Phí trả Hóa đơn", jScrollPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -255,7 +356,8 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
 
-        if (!checkForm()) {
+        if (checkForm()) {
+            System.out.println("Not OK");
             return;
         }
         String start = tfDateStart.getText();
@@ -270,7 +372,7 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCheckActionPerformed
 
     private boolean checkForm() {
-        return tfDateEnd.getText().equals("") && tfDateStart.getText().equals("");
+        return tfDateEnd.getText().equals("") || tfDateStart.getText().equals("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
@@ -280,14 +382,18 @@ public class AnalysisManagementFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lbProfit;
+    private javax.swing.JLabel lbTotalCost;
     private javax.swing.JLabel lbTotalGet;
     private javax.swing.JTabbedPane pThongKe;
+    private javax.swing.JTable tblBill;
     private javax.swing.JTable tblDoanhThu;
-    private javax.swing.JTable tblProfit;
+    private javax.swing.JTable tblEmployee;
     private javax.swing.JTextField tfDateEnd;
     private javax.swing.JTextField tfDateStart;
     // End of variables declaration//GEN-END:variables
